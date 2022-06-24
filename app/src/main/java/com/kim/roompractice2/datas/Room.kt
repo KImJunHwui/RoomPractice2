@@ -3,6 +3,7 @@ package com.kim.roompractice2.datas
 import android.icu.text.NumberFormat
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.io.Serializable
 import java.text.DecimalFormat
 import java.util.*
 
@@ -10,7 +11,7 @@ class Room(
     val price : Int,
     val address : String,
     val floor : Int,
-    val description : String) {
+    val description : String) : Serializable{
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun getFommattedprice(): String {
@@ -26,7 +27,7 @@ class Room(
 
         else{
 
-            return "${this.price}"
+            return "${NumberFormat.getNumberInstance(Locale.KOREA).format(this.price)}"
         }
 
     }

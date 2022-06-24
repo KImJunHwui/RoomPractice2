@@ -1,5 +1,6 @@
 package com.kim.roompractice2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kim.roompractice2.Adapters.RoomAdapter
@@ -16,8 +17,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        roomlistView.setOnItemClickListener { parent, view, position, id ->
+
+            val roomdatas = mRoomList[position]
+            val myIntent = Intent(this, RoomViewDetail::class.java)
+            myIntent.putExtra("room", roomdatas)
+            startActivity(myIntent)
+
+
+        }
+
     mRoomList.add( Room(8000, "경주시 동천동", 15, "20년된 구축 아파트"))
-        mRoomList.add( Room(16000, "안양시 평안동", 8, "270년된 구축 아파트"))
+        mRoomList.add( Room(16000, "안양시 평안동", 8, "27년된 구축 아파트"))
         mRoomList.add( Room(24000, "동탄시 부영로", 0, "20년된 구축 아파트"))
         mRoomList.add( Room(12000, "세종시 도움로", -3, "10년된 신축 아파트"))
         mRoomList.add( Room(50000, "안동시 하회마을", -4, "30년된 전원주택"))
